@@ -4,18 +4,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="App">
-      <p>Humoroo!</p>
+      <img src="/humoroo_logo_cropped.jpg" alt="image" width="50%"/>
       <form>
-        <div class="row">
-          <div class="col-sm"></div>
-          <div class="col-sm">
-            <input type="text" class="form-control" placeholder="Word #1"></input>
+        <div className="form-group" id="word-input">
+          <div className="row">
+            <div className="col-sm"></div>
+            <div className="col-sm">
+              <input type="text" className="form-control" placeholder="Word #1"></input>
+            </div>
+            <div className="col-sm">
+              <input type="text" className="form-control" placeholder="Word #2"></input>
+            </div>
+            <div className="col-sm"></div>
           </div>
-          <div class="col-sm">
-            <input type="text" class="form-control" placeholder="Word #2"></input>
-          </div>
-          <div class="col-sm"></div>
         </div>
+        
+        <button type="submit" className="btn btn-info" id="generate">Generate</button>
       </form>
     </div>
   );
