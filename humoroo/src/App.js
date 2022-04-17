@@ -7,12 +7,14 @@ function App() {
       <p>Humoroo!</p>
       <form>
         <div class="row">
-          <div class="col-2">
+          <div class="col-sm"></div>
+          <div class="col-sm">
             <input type="text" class="form-control" placeholder="Word #1"></input>
           </div>
-          <div class="col-2">
+          <div class="col-sm">
             <input type="text" class="form-control" placeholder="Word #2"></input>
           </div>
+          <div class="col-sm"></div>
         </div>
       </form>
     </div>
