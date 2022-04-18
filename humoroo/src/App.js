@@ -1,6 +1,9 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShuffle } from '@fortawesome/free-solid-svg-icons'
+
 function App() {
   return (
     <div className="App">
@@ -15,7 +18,9 @@ function App() {
             <div className="col-sm">
               <input type="text" className="form-control" placeholder="Noun #2"></input>
             </div>
-            <div className="col-sm"></div>
+            <div className="col-sm" id="shuffle-button">
+              <FontAwesomeIcon icon={faShuffle} id="shuffle"/>
+            </div>
           </div>
         </div>
 
