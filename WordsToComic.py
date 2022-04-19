@@ -4,7 +4,7 @@ from google_images_search import GoogleImagesSearch
 import cv2
 
 def main(word1, word2, word3):
-    gis = GoogleImagesSearch('dev-key-here', 'project-cx-here')
+    gis = GoogleImagesSearch('116837858877556455072', 'f24b6ddc7bc034296')
 
     _search_params = {
         'q': '...',
