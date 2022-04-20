@@ -6,3 +6,4 @@
 .idea/This-Project-is-a-Joke.iml
 .idea/vcs.xml
 node_modules
+data/words_dictionary.json
