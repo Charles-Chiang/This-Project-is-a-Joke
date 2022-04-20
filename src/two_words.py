@@ -1,3 +1,5 @@
+from generate_two_words import random_gen_two_words
+
 two_words = list() #store two words
 
 def add_words(words):
@@ -27,6 +29,9 @@ def main():
     print('update_words: {}'.format(two_words))
     delete_words()
     print('delete_words: {}'.format(len(two_words)))
+
+    two_words = random_gen_two_words()
+    print('random words: {}'.format(two_words))
 
 if __name__ == '__main__':
     main()
