@@ -34,4 +34,5 @@ def main(word1, word2, word3):
     cv2.imwrite('comicpictures.jpg', comicpictures)
 
 
-
+if __name__ == "__main__":
+    main('cat', 'dog', 'fish')
