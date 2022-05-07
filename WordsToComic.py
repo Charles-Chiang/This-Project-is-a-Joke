@@ -2,9 +2,10 @@
 # https://pypi.org/project/Google-Images-Search/
 from google_images_search import GoogleImagesSearch
 import cv2
+import os
+pathToDir = os.path.dirname(os.path.abspath(__file__))
 
-
-def main(word1, word2, word3):
+def GenerateComic(word1, word2, word3):
     gis = GoogleImagesSearch('AIzaSyC5Nd7La6m8_NABAuFex3OneBfKEQwOzwc', 'f24b6ddc7bc034296')
 
     _search_params = {
@@ -20,24 +21,29 @@ def main(word1, word2, word3):
         'imgColorType': 'imgColorTypeUndefined'  ##
     }
     _search_params['q'] = word1
-    gis.search(search_params=_search_params, width=500, height=500)
+    gis.search(search_params=_search_params, width=500, height=500, path_to_dir=pathToDir,
+               custom_image_name=word1)
     image1 = gis.results()[0]
+    print(type(image1))
     _search_params['q'] = word2
-    gis.search(search_params=_search_params, width=500, height=500)
+    gis.search(search_params=_search_params, width=500, height=500, path_to_dir=pathToDir,
+               custom_image_name=word2)
     image2 = gis.results()[0]
     _search_params['q'] = word3
-    gis.search(search_params=_search_params, width=500, height=500)
+    gis.search(search_params=_search_params, width=500, height=500, path_to_dir=pathToDir,
+               custom_image_name=word3)
     image3 = gis.results()[0]
 
     # search done. now concatenate images
-    #img1 = cv2.imread(word1 + '.jpg')
-    #img2 = cv2.imread(word2 + '.jpg')
-    #img3 = cv2.imread(word3 + '.jpg')
+    img1 = cv2.imread(word1 + '.jpg')
+    img2 = cv2.imread(word2 + '.jpg')
+    img3 = cv2.imread(word3 + '.jpg')
 
-    comicpictures = cv2.hconcat([image1, image2, image3])
+    os.remove(word1 + '.jpg')
+    os.remove(word2 + '.jpg')
+    os.remove(word3 + '.jpg')
+
+    comicpictures = cv2.hconcat([img1, img2, img3])
     cv2.imwrite('comicpictures.jpg', comicpictures)
 
 
-# if __name__ == "__main__":
-#     main('cat', 'dog', 'fish')
-main('cat', 'dog', 'fish')
