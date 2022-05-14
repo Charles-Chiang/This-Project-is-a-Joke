@@ -1,4 +1,3 @@
-#obsolete - we are not using flask anymore.
 #Need to download and install Flask (python -m pip install flask)
 #https://flask.palletsprojects.com/en/2.1.x/installation/
 
