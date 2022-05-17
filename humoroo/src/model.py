@@ -1,7 +1,10 @@
-import gensim
-# from gensim.models import Word2Vec
+from gensim.models import KeyedVectors
+import time
 
-model = gensim.models.KeyedVectors.load_word2vec_format('GoogleNews-vectors-negative300.bin', binary=True)
+startTime = time.perf_counter()
+model = KeyedVectors.load_word2vec_format("./humoroo/src/GoogleNews-vectors-negative300.bin", binary=True)
 
-dog = model['dog']
-print(dog.shape)
+word = model['heroines']
+endTime = time.perf_counter()
+print(word.shape)
+print("Modelling took " + str(endTime-startTime) + " seconds")
