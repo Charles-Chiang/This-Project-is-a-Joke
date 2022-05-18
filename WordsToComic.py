@@ -53,7 +53,7 @@ def GenerateComic(word1, word2, word3, phr1, phr2, phr3):
     comicpictures = cv2.hconcat([img1, img2, img3])
     cv2.imwrite('comicpictures.jpg', comicpictures)
 
-
+#shamelessly stolen from https://blog.lipsumarium.com/caption-memes-in-python/
 def addWords(word, phrase):
     img1 = Image.open(word + '.jpg')
     draw = ImageDraw.Draw(img1)
