@@ -7,7 +7,7 @@ import { faShuffle } from '@fortawesome/free-solid-svg-icons'
 function App() {
   return (
     <div className="App">
-      <img src="/humoroo_logo_hires.jpeg" alt="image" width="50%"/>
+      <img src="/humoroo_logo_hires.jpeg" alt="header" width="50%"/>
       <form>
         <div className="form-group" id="word-input">
           <div className="row">
