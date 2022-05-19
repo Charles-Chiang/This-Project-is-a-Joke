@@ -39,25 +39,25 @@ def GenerateComic(word1, word2, word3, phr1, phr2, phr3):
     addWords(word3, phr3)
 
     # search done. now concatenate images
-    img1 = cv2.imread(word1 + '.jpg')
-    img2 = cv2.imread(word2 + '.jpg')
-    img3 = cv2.imread(word3 + '.jpg')
+    img1 = cv2.imread(word1 + word1 + '.png')
+    img2 = cv2.imread(word2 + word2 + '.png')
+    img3 = cv2.imread(word3 + word3 + '.png')
 
     os.remove(word1 + '.jpg')
     os.remove(word2 + '.jpg')
     os.remove(word3 + '.jpg')
-    os.remove(word1 + word1 + '.jpg')
-    os.remove(word2 + word2 + '.jpg')
-    os.remove(word3 + word3 + '.jpg')
+    os.remove(word1 + word1 + '.png')
+    os.remove(word2 + word2 + '.png')
+    os.remove(word3 + word3 + '.png')
 
     comicpictures = cv2.hconcat([img1, img2, img3])
     cv2.imwrite('comicpictures.jpg', comicpictures)
 
 #shamelessly stolen from https://blog.lipsumarium.com/caption-memes-in-python/
 def addWords(word, phrase):
-    img1 = Image.open(word + '.jpg')
-    draw = ImageDraw.Draw(img1)
-    font = ImageFont.truetype("impact.ttf", 20)
+    img = Image.open(word + '.jpg')
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.truetype("impact.ttf", 50)
 
     textX = 10
     textY = 10
@@ -67,4 +67,7 @@ def addWords(word, phrase):
     draw.text((textX + 2, textY + 2), phrase, (0, 0, 0), font=font)
     draw.text((textX - 2, textY + 2), phrase, (0, 0, 0), font=font)
     draw.text((textX, textY), phrase, (255, 255, 255), font=font)
-    img1.save(word + word + '.jpg')
+    # print("wrote words successfully!")
+    img.save(word + word + '.png')
+
+# GenerateComic("samoyed","cat","steak","it's a dog","it's a cat","roasty toasty")
