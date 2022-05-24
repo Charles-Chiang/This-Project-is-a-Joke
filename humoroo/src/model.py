@@ -2,7 +2,7 @@ from gensim.models import KeyedVectors
 import time
 import WordsToComic as WordsToComic
 startTime = time.perf_counter()
-model = KeyedVectors.load_word2vec_format("./humoroo/src/GoogleNews-vectors-negative300.bin", binary=True)
+model = KeyedVectors.load_word2vec_format("./GoogleNews-vectors-negative300.bin", binary=True)
 endTime = time.perf_counter()
 print("Modelling took " + str(endTime-startTime) + " seconds")
 
@@ -16,11 +16,12 @@ def pass_joke(word1, word2):
 
     startTime = time.perf_counter()
     #find 10 similar words
-    word3 = model.most_similar(positive=[word1, word2])[0]
+    word3 = model.most_similar(positive=[word1, word2])[9][0].replace("_", " ")
     endTime = time.perf_counter()
     print("Joke-writing " + str(endTime-startTime) + " seconds")
 
     joke = ["When I think of {}...".format(word1), "...my mind always wanders to {}.".format(word2), "I blame {}.".format(word3)]
+    print(joke)
     WordsToComic.GenerateComic(word1, word2, word3, joke[0], joke[1], joke[2])
     return joke
 
@@ -65,14 +66,15 @@ def ten_similar_format(word1, word2, format):
         #print("When I think of {} my mind always wanders to {}. I blame {}".format(word1,word2,word))
     return simList
 
+pass_joke("Kardashian", "model")
 #Testing
-while(1):
-    input1 = input("Word 1: ").strip().replace(" ", "_")
-    input2 = input("Word 2: ").strip().replace(" ", "_")
-    #input3 = input("Format? (1-6)")
+# while(1):
+#     input1 = input("Word 1: ").strip().replace(" ", "_")
+#     input2 = input("Word 2: ").strip().replace(" ", "_")
+#     #input3 = input("Format? (1-6)")
 
-    startTime = time.perf_counter()
-    # ten_similar_format(input1,input2,input3)
-    pass_joke(input1,input2)
-    endTime = time.perf_counter()
-    print("Joke writing took " + str(endTime-startTime) + " seconds")
+#     startTime = time.perf_counter()
+#     # ten_similar_format(input1,input2,input3)
+#     pass_joke(input1,input2)
+#     endTime = time.perf_counter()
+#     print("Joke writing took " + str(endTime-startTime) + " seconds")
