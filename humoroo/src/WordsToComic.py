@@ -16,7 +16,7 @@ def GenerateComic(word1, word2, word3, phr1, phr2, phr3):
         'num': 1,
         'fileType': 'jpg',
         'rights': 'cc_publicdomain|cc_attribute|cc_sharealike|cc_noncommercial|cc_nonderived',
-        'safe': 'safeUndefined',  ##
+        'safe': 'off',  ##
         'imgType': 'imgTypeUndefined',  ##
         'imgSize': 'imgSizeUndefined',  ##
         'imgDominantColor': 'imgDominantColorUndefined',
