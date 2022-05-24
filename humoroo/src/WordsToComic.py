@@ -48,10 +48,18 @@ def GenerateComic(word1, word2, word3, phr1, phr2, phr3):
     img1 = cv2.imread('1.png')
     img2 = cv2.imread('2.png')
     img3 = cv2.imread('3.png')
-
-    os.remove(word1Loc)
-    os.remove(word2Loc)
-    os.remove(word3Loc)
+    try:
+        os.remove(word1Loc)
+    except:
+        pass
+    try:
+        os.remove(word2Loc)
+    except:
+        pass
+    try:
+        os.remove(word3Loc)
+    except:
+        pass
     os.remove('1.png')
     os.remove('2.png')
     os.remove('3.png')
@@ -63,17 +71,74 @@ def GenerateComic(word1, word2, word3, phr1, phr2, phr3):
 def addWords(word, phrase, num):
     img = Image.open(word)
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("impact.ttf", 50)
+    font = ImageFont.truetype("impact.ttf", 40)
+    w, h = draw.textsize(phrase, font) # measure the size the text will take
 
-    textX = 10
-    textY = 10
+    lineCount = 1
+    if w > img.width:
+        lineCount = int(round((w / img.width) + 1))
 
-    draw.text((textX - 2, textY - 2), phrase, (0, 0, 0), font=font)
-    draw.text((textX + 2, textY - 2), phrase, (0, 0, 0), font=font)
-    draw.text((textX + 2, textY + 2), phrase, (0, 0, 0), font=font)
-    draw.text((textX - 2, textY + 2), phrase, (0, 0, 0), font=font)
-    draw.text((textX, textY), phrase, (255, 255, 255), font=font)
-    # print("wrote words successfully!")
+    print("lineCount: {}".format(lineCount))
+
+    lines = []
+    if lineCount > 1:
+        lastCut = 0
+        isLast = False
+        for i in range(0,lineCount):
+            if lastCut == 0:
+                cut = (len(phrase) / lineCount) * i
+            else:
+                cut = lastCut
+
+            if i < lineCount-1:
+                nextCut = (len(phrase) / lineCount) * (i+1)
+            else:
+                nextCut = len(phrase)
+                isLast = True
+
+            print("cut: {} -> {}".format(cut, nextCut))
+            nextCut = round(nextCut)
+            cut = round(cut)
+            # make sure we don't cut words in half
+            if nextCut == len(phrase) or phrase[nextCut] == " ":
+                print("may cut")
+            else:
+                print("may not cut")
+                while phrase[nextCut] != " ":
+                    nextCut += 1
+                print("new cut: {}".format(nextCut))
+
+            line = phrase[cut:nextCut].strip()
+
+            # is line still fitting ?
+            w, h = draw.textsize(line, font)
+            if not isLast and w > img.width:
+                print("overshot")
+                nextCut -= 1
+                while phrase[nextCut] != " ":
+                    nextCut -= 1
+                print("new cut: {}".format(nextCut))
+
+            lastCut = nextCut
+            lines.append(phrase[cut:nextCut].strip())
+
+    else:
+        lines.append(phrase)
+
+    print(lines)
+
+    lastY = -h
+
+    for i in range(0, lineCount):
+        w, h = draw.textsize(lines[i], font)
+        x = img.width/2 - w/2
+        y = lastY + h
+        draw.text((x - 2, y - 2), lines[i], (0, 0, 0), font=font)
+        draw.text((x + 2, y - 2), lines[i], (0, 0, 0), font=font)
+        draw.text((x + 2, y + 2), lines[i], (0, 0, 0), font=font)
+        draw.text((x - 2, y + 2), lines[i], (0, 0, 0), font=font)
+        draw.text((x, y), lines[i], (255, 255, 255), font=font)
+        lastY = y
     img.save(num + '.png')
 
-#GenerateComic("samoyed","cat","steak","it's a dog","it's a cat","roasty toasty")
+# GenerateComic("pillow","samoyed","garbage","it's a pillow","it's a pet","it's Dominic Fike's Dillo Performance")
