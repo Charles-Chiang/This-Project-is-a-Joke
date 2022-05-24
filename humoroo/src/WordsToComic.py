@@ -6,10 +6,12 @@ import os
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
+
 pathToDir = os.path.dirname(os.path.abspath(__file__))
 
+
 def GenerateComic(word1, word2, word3, phr1, phr2, phr3):
-    gis = GoogleImagesSearch('AIzaSyC5Nd7La6m8_NABAuFex3OneBfKEQwOzwc', 'f24b6ddc7bc034296')
+    gis = GoogleImagesSearch('AIzaSyBGMs0t-CExOqJ7IVQvL_k8Z65l26kaViI', 'f24b6ddc7bc034296')
 
     _search_params = {
         'q': '...',
@@ -53,7 +55,8 @@ def GenerateComic(word1, word2, word3, phr1, phr2, phr3):
     comicpictures = cv2.hconcat([img1, img2, img3])
     cv2.imwrite('comicpictures.jpg', comicpictures)
 
-#shamelessly stolen from https://blog.lipsumarium.com/caption-memes-in-python/
+
+# shamelessly stolen from https://blog.lipsumarium.com/caption-memes-in-python/
 def addWords(word, phrase):
     img = Image.open(word + '.jpg')
     draw = ImageDraw.Draw(img)
@@ -70,4 +73,4 @@ def addWords(word, phrase):
     # print("wrote words successfully!")
     img.save(word + word + '.png')
 
-# GenerateComic("samoyed","cat","steak","it's a dog","it's a cat","roasty toasty")
+#GenerateComic("samoyed","cat","steak","it's a dog","it's a cat","roasty toasty")
