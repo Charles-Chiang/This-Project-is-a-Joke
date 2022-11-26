@@ -14,5 +14,5 @@ if __name__ == '__main__':
     # demo print
     print(type(joke_data))
     for j in joke_data:
-        if 'good' in j and 'bad' in j:
+        if 'cat' in j and 'dog' in j:
             print(j)
