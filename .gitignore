@@ -7,3 +7,14 @@
 .idea/vcs.xml
 node_modules
 data/words_dictionary.json
+.DS_Store
+data/.DS_Store
+src/__pycache__/find_similar_word.cpython-39.pyc
+src/__pycache__/generate_two_words.cpython-39.pyc
+src/__pycache__/lev_distance.cpython-39.pyc
+src/__pycache__/read_pickle.cpython-39.pyc
+src/__pycache__/read_txt.cpython-39.pyc
+src/__pycache__/remove_duplicate.cpython-39.pyc
+src/__pycache__/remove_plural.cpython-39.pyc
+src/cc.en.300.bin
+src/GoogleNews-vectors-negative300.bin
